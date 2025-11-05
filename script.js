@@ -1,3 +1,8 @@
+// Configuration constants
+const CONFIG = {
+    NAVBAR_HEIGHT_OFFSET: 80
+};
+
 // Mobile menu toggle
 document.addEventListener('DOMContentLoaded', function() {
     const hamburger = document.querySelector('.hamburger');
@@ -25,8 +30,7 @@ document.addEventListener('DOMContentLoaded', function() {
             e.preventDefault();
             const target = document.querySelector(this.getAttribute('href'));
             if (target) {
-                const offset = 80; // Height of fixed navbar
-                const targetPosition = target.offsetTop - offset;
+                const targetPosition = target.offsetTop - CONFIG.NAVBAR_HEIGHT_OFFSET;
                 window.scrollTo({
                     top: targetPosition,
                     behavior: 'smooth'
@@ -40,8 +44,19 @@ document.addEventListener('DOMContentLoaded', function() {
     if (contactForm) {
         contactForm.addEventListener('submit', function(e) {
             e.preventDefault();
-            alert('Thank you for your message! We will get back to you soon.');
-            contactForm.reset();
+            
+            // Show success message with better UX
+            const submitButton = contactForm.querySelector('button[type="submit"]');
+            const originalText = submitButton.textContent;
+            submitButton.textContent = '✓ Message Sent!';
+            submitButton.style.backgroundColor = '#48bb78';
+            
+            // Reset form and button after delay
+            setTimeout(() => {
+                contactForm.reset();
+                submitButton.textContent = originalText;
+                submitButton.style.backgroundColor = '';
+            }, 3000);
         });
     }
 
@@ -87,7 +102,7 @@ document.addEventListener('DOMContentLoaded', function() {
         
         sections.forEach(section => {
             const sectionHeight = section.offsetHeight;
-            const sectionTop = section.offsetTop - 100;
+            const sectionTop = section.offsetTop - CONFIG.NAVBAR_HEIGHT_OFFSET - 20;
             const sectionId = section.getAttribute('id');
             const navLink = document.querySelector(`.nav-menu a[href="#${sectionId}"]`);
             
