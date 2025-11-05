@@ -159,6 +159,21 @@ p {
     background: linear-gradient(135deg, rgba(52, 152, 219, 0.05), rgba(52, 152, 219, 0.1));
 }
 
+/* Game Cards */
+.game-card {
+    background: linear-gradient(135deg, rgba(231, 76, 60, 0.05), rgba(155, 89, 182, 0.05));
+    border-left: 4px solid var(--accent-color);
+}
+
+.game-card:hover {
+    border-left-color: #9b59b6;
+    background: linear-gradient(135deg, rgba(231, 76, 60, 0.1), rgba(155, 89, 182, 0.1));
+}
+
+.game-card h3 {
+    color: var(--accent-color);
+}
+
 /* Add Project Card */
 .add-project {
     border: 2px dashed var(--text-light);
